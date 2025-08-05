@@ -88,18 +88,13 @@ const BookingForm = () => {
 
       const hari = formData.hari;
 
-      const qrData = `Nama: ${
-        formData.nama || formData.namaPasien
-      }\nTanggal: ${tanggal} (${hari})\nJam: ${jam}`;
-      const barcode = await QRCode.toDataURL(qrData);
-
       const templateParams = {
         to_email: formData.email,
         nama: formData.nama || formData.namaPasien || "Tamu",
         tanggal,
         hari,
         jam,
-        barcode,
+        tindakan,
       };
 
       await emailjs.send(
