@@ -183,7 +183,7 @@ const AdminDashboard = () => {
                 type="date"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}
-                className="input w-full sm:w-auto min-w-[150px] bg-white border rounded px-3 py-2"
+                className="input w-full sm:w-auto min-w-[150px] bg-white border rounded px-3 py-2 text-gray-700"
               />
             </div>
 
@@ -196,7 +196,7 @@ const AdminDashboard = () => {
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
                 placeholder="Cari nama pasien/personil"
-                className="input w-full bg-white border rounded px-3 py-2"
+                className="input w-full bg-white border rounded px-3 py-2 text-gray-700"
               />
             </div>
             <button
@@ -208,7 +208,7 @@ const AdminDashboard = () => {
           </div>
 
           {/* Table */}
-          <div className="w-full overflow-x-auto">
+          <div className="w-full overflow-x-auto text-gray-700">
             <table className="min-w-full border border-gray-300 text-sm md:text-base">
               <thead className="bg-gray-100">
                 <tr>
