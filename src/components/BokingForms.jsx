@@ -90,11 +90,11 @@ const BookingForm = () => {
 
       const templateParams = {
         to_email: formData.email,
-        nama: formData.nama || formData.namaPasien || "Tamu",
+        nama: formData.nama,
         tanggal,
         hari,
         jam,
-        tindakan,
+        tindakan: formData.tindakan, // ✅ benar!
       };
 
       await emailjs.send(
