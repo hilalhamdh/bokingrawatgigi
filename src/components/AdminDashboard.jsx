@@ -171,7 +171,7 @@ const AdminDashboard = () => {
                 type="date"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}
-                className="input w-full sm:w-auto min-w-[150px] bg-white border border-gray-700 rounded px-3 py-2"
+                className="input w-full sm:w-auto min-w-[150px] bg-white text-gray-700  border border-gray-700 rounded px-3 py-2"
               />
             </div>
 
