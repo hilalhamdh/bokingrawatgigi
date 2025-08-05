@@ -145,7 +145,7 @@ const BookingForm = () => {
             Form Booking Rawat Gigi
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6 text-gray-500">
             {/* Email dan HP */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <input
@@ -170,19 +170,22 @@ const BookingForm = () => {
 
             {/* Status */}
             <div>
-              <label className="block font-semibold text-gray-700 mb-2">
+              <label className="block font-semibold text-gray-900 mb-2">
                 Status:
               </label>
               <div className="flex gap-8">
                 {["Keluarga", "Personil"].map((status) => (
-                  <label key={status} className="flex items-center space-x-2">
+                  <label
+                    key={status}
+                    className="flex items-center space-x-2 cursor-pointer"
+                  >
                     <input
                       type="radio"
                       name="status"
                       value={status}
                       checked={formData.status === status}
                       onChange={handleChange}
-                      className="accent-purple-600"
+                      className="appearance-none w-4 h-4 rounded-full border-2 border-purple-600 checked:bg-purple-600 checked:border-purple-600 focus:outline-none"
                       required
                     />
                     <span>{status}</span>
@@ -235,6 +238,11 @@ const BookingForm = () => {
                 >
                   <option value="">-- Pilih Tindakan --</option>
                   <option value="Pemeriksaan Gigi">Pemeriksaan Gigi</option>
+                  <option value="">Pilih Tindakan</option>
+                  <option>Pemeriksaan dan Pengobatan</option>
+                  <option>Penambalan Gigi</option>
+                  <option>Pencabutan Gigi</option>
+
                   <option
                     value="Pembersihan Karang Gigi"
                     disabled={formData.hari === "Kamis"}
@@ -242,7 +250,9 @@ const BookingForm = () => {
                     Pembersihan Karang Gigi{" "}
                     {formData.hari === "Kamis" ? "(tidak tersedia Kamis)" : ""}
                   </option>
-                  <option value="Tambal Gigi">Tambal Gigi</option>
+
+                  <option>Perawatan Saluran Akar</option>
+                  <option>Lainnya</option>
                 </select>
                 {formData.tindakan === "Lainnya" && (
                   <textarea
@@ -277,14 +287,24 @@ const BookingForm = () => {
                   name="tindakan"
                   value={formData.tindakan}
                   onChange={handleChange}
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm"
                   required
+                  className="border rounded-md p-2 w-full"
                 >
+                  <option value="">-- Pilih Tindakan --</option>
+                  <option value="Pemeriksaan Gigi">Pemeriksaan Gigi</option>
                   <option value="">Pilih Tindakan</option>
                   <option>Pemeriksaan dan Pengobatan</option>
                   <option>Penambalan Gigi</option>
                   <option>Pencabutan Gigi</option>
-                  <option>Pembersihan Karang Gigi</option>
+
+                  <option
+                    value="Pembersihan Karang Gigi"
+                    disabled={formData.hari === "Kamis"}
+                  >
+                    Pembersihan Karang Gigi{" "}
+                    {formData.hari === "Kamis" ? "(tidak tersedia Kamis)" : ""}
+                  </option>
+
                   <option>Perawatan Saluran Akar</option>
                   <option>Lainnya</option>
                 </select>
