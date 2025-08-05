@@ -47,6 +47,15 @@ const BookingForm = () => {
         alert("Silakan pilih tanggal dan jam terlebih dahulu.");
         return;
       }
+      if (
+        formData.tindakan === "Pembersihan Karang Gigi" &&
+        formData.hari === "Kamis"
+      ) {
+        alert(
+          "Tindakan Pembersihan Karang Gigi tidak tersedia pada hari Kamis. Silakan pilih hari lain."
+        );
+        return;
+      }
 
       // Cek apakah sudah ada booking pada tanggal dan jam yang sama
       // Cek apakah jam sudah dibooking
@@ -226,16 +235,19 @@ const BookingForm = () => {
                   name="tindakan"
                   value={formData.tindakan}
                   onChange={handleChange}
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm"
                   required
+                  className="border rounded-md p-2 w-full"
                 >
-                  <option value="">Pilih Tindakan</option>
-                  <option>Pemeriksaan dan Pengobatan</option>
-                  <option>Penambalan Gigi</option>
-                  <option>Pencabutan Gigi</option>
-                  <option>Pembersihan Karang Gigi</option>
-                  <option>Perawatan Saluran Akar</option>
-                  <option>Lainnya</option>
+                  <option value="">-- Pilih Tindakan --</option>
+                  <option value="Pemeriksaan Gigi">Pemeriksaan Gigi</option>
+                  <option
+                    value="Pembersihan Karang Gigi"
+                    disabled={formData.hari === "Kamis"}
+                  >
+                    Pembersihan Karang Gigi{" "}
+                    {formData.hari === "Kamis" ? "(tidak tersedia Kamis)" : ""}
+                  </option>
+                  <option value="Tambal Gigi">Tambal Gigi</option>
                 </select>
                 {formData.tindakan === "Lainnya" && (
                   <textarea
