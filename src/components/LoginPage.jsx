@@ -15,38 +15,69 @@ const LoginPage = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/admin"); // redirect ke dashboard admin
+      navigate("/admin");
     } catch (err) {
       setError("Login gagal: " + err.message);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-4 border rounded">
-      <h2 className="text-xl font-bold mb-4">Login Admin</h2>
-      <form onSubmit={handleLogin} className="space-y-4">
-        <input
-          type="email"
-          placeholder="Email"
-          className="input w-full"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="input w-full"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p className="text-red-600">{error}</p>}
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded w-full"
-        >
-          Login
-        </button>
-      </form>
+    <div
+      className="w-full min-h-screen bg-cover bg-center py-16 px-4 flex items-center justify-center"
+      style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path background
+    >
+      <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md border border-gray-200 animate-fade-in">
+        <h2 className="text-2xl font-semibold text-center text-purple-700 mb-6">
+          Login Admin
+        </h2>
+        <form onSubmit={handleLogin} className="space-y-5">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              className="input  border-purple-400 w-full"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="username"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="********"
+              className="input border-purple-400  w-full"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+            />
+          </div>
+
+          {error && <p className="text-red-600 text-sm">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-md font-semibold transition duration-300"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
