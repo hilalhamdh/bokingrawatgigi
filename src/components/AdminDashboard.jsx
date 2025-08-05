@@ -128,126 +128,153 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <header className="w-full bg-white shadow-md">
-        <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex gap-4">
-            <img src="/logo.jpg" className="w-10 h-10 rounded-full" />
-            <Link to="/" className="text-2xl font-bold text-purple-700">
-              RAWAT GITIMU
-            </Link>
-          </div>
+      <div
+        className="w-full min-h-screen bg-cover bg-center  "
+        style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
+      >
+        <header className="w-full  bg-white shadow-xl border-b-3 border-gray-300">
+          <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center ">
+            <div className="flex gap-4">
+              <img src="/logo.jpg" className="w-10 h-10 rounded-full" />
+              <Link to="/" className="text-2xl font-bold text-purple-700">
+                RAWAT GITIMU
+              </Link>
+            </div>
 
-          {/* Right side: Buttons */}
-          <div className="flex items-center space-x-4">
-            {/* Future menu / icons */}
+            {/* Right side: Buttons */}
+            <div className="flex items-center space-x-4">
+              {/* Future menu / icons */}
 
-            {/* Login Admin */}
-            <Link
-              to="/"
-              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition"
+              {/* Login Admin */}
+              <Link
+                to="/"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition"
+              >
+                Logout
+              </Link>
+            </div>
+          </nav>
+        </header>
+
+        <div className="max-w-7xl mx-auto  p-4 mt-5 bg-white">
+          <h1 className="text-xl md:text-2xl font-bold mb-4 text-center text-purple-600 pb-4">
+            Daftar Booking <span className="text-red-600">Rawat Gigi</span>
+          </h1>
+
+          {/* Filter */}
+          <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-700 mb-1">
+                Tanggal dari
+              </label>
+              <input
+                type="date"
+                value={dateFrom}
+                onChange={(e) => setDateFrom(e.target.value)}
+                className="input w-full sm:w-auto min-w-[150px] bg-white border rounded px-3 py-2"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-700 mb-1">
+                Tanggal sampai
+              </label>
+              <input
+                type="date"
+                value={dateTo}
+                onChange={(e) => setDateTo(e.target.value)}
+                className="input w-full sm:w-auto min-w-[150px] bg-white border rounded px-3 py-2"
+              />
+            </div>
+
+            <div className="flex flex-col flex-grow min-w-[200px]">
+              <label className="text-sm font-medium text-gray-700 mb-1">
+                Cari nama
+              </label>
+              <input
+                type="text"
+                value={searchName}
+                onChange={(e) => setSearchName(e.target.value)}
+                placeholder="Cari nama pasien/personil"
+                className="input w-full bg-white border rounded px-3 py-2"
+              />
+            </div>
+            <button
+              onClick={exportCSV}
+              className="bg-green-600 text-white px-4 py-2 rounded text-sm sm:text-base w-full sm:w-auto text-center"
             >
-              Logout
-            </Link>
+              Export CSV
+            </button>
           </div>
-        </nav>
-      </header>
 
-      <div className="max-w-7xl mx-auto mt-7 p-4">
-        <h1 className="text-2xl font-bold mb-4">
-          Daftar Booking Rawat Gigi BIN
-        </h1>
-
-        {/* Filter */}
-        <div className="flex flex-wrap gap-4 mb-6">
-          <input
-            type="date"
-            value={dateFrom}
-            onChange={(e) => setDateFrom(e.target.value)}
-            className="input"
-            placeholder="Tanggal dari"
-          />
-          <input
-            type="date"
-            value={dateTo}
-            onChange={(e) => setDateTo(e.target.value)}
-            className="input"
-            placeholder="Tanggal sampai"
-          />
-          <input
-            type="text"
-            value={searchName}
-            onChange={(e) => setSearchName(e.target.value)}
-            placeholder="Cari nama pasien/personil"
-            className="input flex-grow"
-          />
-          <button
-            onClick={exportCSV}
-            className="bg-green-600 text-white px-4 py-2 rounded whitespace-nowrap"
-          >
-            Export CSV
-          </button>
-        </div>
-
-        {/* Table */}
-        <table className="min-w-full border border-gray-300">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="border px-4 py-2">Nama</th>
-              <th className="border px-4 py-2">Email</th>
-              <th className="border px-4 py-2">Status</th>
-              <th className="border px-4 py-2">Hari</th>
-              <th className="border px-4 py-2">Tanggal</th>
-              <th className="border px-4 py-2">Jam</th>
-              <th className="border px-4 py-2">Unit</th>
-              <th className="border px-4 py-2">Tindakan</th>
-              <th className="border px-4 py-2">Verifikasi</th>
-              <th className="border px-4 py-2">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBookings.length === 0 ? (
-              <tr>
-                <td colSpan="10" className="text-center p-4">
-                  Tidak ada data sesuai filter
-                </td>
-              </tr>
-            ) : (
-              filteredBookings.map((booking) => (
-                <tr key={booking.id}>
-                  <td className="border px-4 py-2">
-                    {booking.nama || booking.namaPasien || "Tamu"}
-                  </td>
-                  <td className="border px-4 py-2">{booking.email}</td>
-                  <td className="border px-4 py-2">{booking.status}</td>
-                  <td className="border px-4 py-2">{booking.hari}</td>
-                  <td className="border px-4 py-2">{booking.tanggal}</td>
-                  <td className="border px-4 py-2">{booking.jam}</td>
-                  <td className="border px-4 py-2">
-                    {booking.unit || booking.unitKeluarga || ""}
-                  </td>
-                  <td className="border px-4 py-2">{booking.tindakan || ""}</td>
-                  <td className="border px-4 py-2 text-center">
-                    <input
-                      type="checkbox"
-                      checked={booking.verified || false}
-                      onChange={() =>
-                        toggleVerified(booking.id, booking.verified || false)
-                      }
-                    />
-                  </td>
-                  <td className="border px-4 py-2 text-center">
-                    <button
-                      onClick={() => deleteBooking(booking.id)}
-                      className="text-red-600 hover:underline"
-                    >
-                      Hapus
-                    </button>
-                  </td>
+          {/* Table */}
+          <div className="w-full overflow-x-auto">
+            <table className="min-w-full border border-gray-300 text-sm md:text-base">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border px-4 py-2">Nama</th>
+                  <th className="border px-4 py-2">Email</th>
+                  <th className="border px-4 py-2">Status</th>
+                  <th className="border px-4 py-2">Hari</th>
+                  <th className="border px-4 py-2">Tanggal</th>
+                  <th className="border px-4 py-2">Jam</th>
+                  <th className="border px-4 py-2">Unit</th>
+                  <th className="border px-4 py-2">Tindakan</th>
+                  <th className="border px-4 py-2">Verifikasi</th>
+                  <th className="border px-4 py-2">Aksi</th>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {filteredBookings.length === 0 ? (
+                  <tr>
+                    <td colSpan="10" className="text-center p-4">
+                      Tidak ada data sesuai filter
+                    </td>
+                  </tr>
+                ) : (
+                  filteredBookings.map((booking) => (
+                    <tr key={booking.id}>
+                      <td className="border px-4 py-2">
+                        {booking.nama || booking.namaPasien || "Tamu"}
+                      </td>
+                      <td className="border px-4 py-2">{booking.email}</td>
+                      <td className="border px-4 py-2">{booking.status}</td>
+                      <td className="border px-4 py-2">{booking.hari}</td>
+                      <td className="border px-4 py-2">{booking.tanggal}</td>
+                      <td className="border px-4 py-2">{booking.jam}</td>
+                      <td className="border px-4 py-2">
+                        {booking.unit || booking.unitKeluarga || ""}
+                      </td>
+                      <td className="border px-4 py-2">
+                        {booking.tindakan || ""}
+                      </td>
+                      <td className="border px-4 py-2 text-center">
+                        <input
+                          type="checkbox"
+                          checked={booking.verified || false}
+                          onChange={() =>
+                            toggleVerified(
+                              booking.id,
+                              booking.verified || false
+                            )
+                          }
+                        />
+                      </td>
+                      <td className="border px-4 py-2 text-center">
+                        <button
+                          onClick={() => deleteBooking(booking.id)}
+                          className="text-red-600 hover:underline"
+                        >
+                          Hapus
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
