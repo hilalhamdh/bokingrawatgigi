@@ -5,10 +5,7 @@ const Navbar = () => {
     <header className="w-full bg-white shadow-md">
       <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex gap-4">
-          <img
-            src="/src/assets/image/logo.jpg"
-            className="w-10 h-10 rounded-full"
-          />
+          <img src="/logo.jpg" className="w-10 h-10 rounded-full" />
           <Link to="/" className="text-2xl font-bold text-purple-700">
             RAWAT GITIMU
           </Link>
