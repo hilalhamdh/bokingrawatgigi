@@ -41,7 +41,7 @@ const LoginPage = () => {
             <input
               id="email"
               type="email"
-              className="input  border-purple-400 w-full"
+              className="input  border-purple-400 w-full bg-white"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -52,7 +52,7 @@ const LoginPage = () => {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1 "
             >
               Password
             </label>
@@ -60,7 +60,7 @@ const LoginPage = () => {
               id="password"
               type="password"
               placeholder="********"
-              className="input border-purple-400  w-full"
+              className="input border-purple-400  w-full bg-white"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
