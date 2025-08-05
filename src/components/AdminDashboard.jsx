@@ -248,9 +248,10 @@ const AdminDashboard = () => {
                       <td className="border px-4 py-2">
                         {booking.tindakan || ""}
                       </td>
-                      <td className="border px-4 py-2 text-center">
+                      <td className="border px-4 py-2 text-center bg-white">
                         <input
                           type="checkbox"
+                          className="bg-white"
                           checked={booking.verified || false}
                           onChange={() =>
                             toggleVerified(

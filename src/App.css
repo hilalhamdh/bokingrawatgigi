@@ -1,2 +1,5 @@
 @import "tailwindcss";
 @plugin "daisyui";
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0) saturate(100%) invert(26%) sepia(9%) saturate(640%) hue-rotate(183deg) brightness(93%) contrast(88%);
+}
