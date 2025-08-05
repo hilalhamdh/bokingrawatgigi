@@ -143,7 +143,7 @@ const BookingForm = () => {
       <Navbar />
       <div
         className="w-full min-h-screen bg-cover bg-center py-16 px-4"
-        style={{ backgroundImage: 'url("src/assets/image/bg.jpg")' }} // Ganti sesuai path
+        style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
       >
         <div className="max-w-3xl md:max-w-5xl mx-auto bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-gray-200">
           <h2 className="text-3xl font-extrabold text-center text-purple-800 mb-8 drop-shadow">
