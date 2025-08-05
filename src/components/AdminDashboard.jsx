@@ -249,17 +249,19 @@ const AdminDashboard = () => {
                         {booking.tindakan || ""}
                       </td>
                       <td className="border px-4 py-2 text-center bg-white">
-                        <input
-                          type="checkbox"
-                          className="bg-white"
-                          checked={booking.verified || false}
-                          onChange={() =>
-                            toggleVerified(
-                              booking.id,
-                              booking.verified || false
-                            )
-                          }
-                        />
+                        <label className="inline-flex items-center justify-center">
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-400"
+                            checked={booking.verified || false}
+                            onChange={() =>
+                              toggleVerified(
+                                booking.id,
+                                booking.verified || false
+                              )
+                            }
+                          />
+                        </label>
                       </td>
                       <td className="border px-4 py-2 text-center">
                         <button
