@@ -5,6 +5,7 @@ import QRCode from "qrcode";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import BookedSlots from "./BookedSlots";
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -216,7 +217,7 @@ const BookingForm = () => {
                   value={formData.unit}
                   onChange={handleChange}
                   required
-                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 >
                   <option value="">-- Pilih Unit --</option>
@@ -255,7 +256,7 @@ const BookingForm = () => {
                     value={formData.unitKeterangan || ""}
                     onChange={handleChange}
                     placeholder="Keterangan Unit"
-                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm
                focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   />
                 )}
@@ -329,7 +330,7 @@ const BookingForm = () => {
                   value={formData.nama}
                   onChange={handleChange}
                   placeholder="Nama Pasien"
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm 
+                  className="border border-gray-300 p-3 rounded-lg shadow-sm
                  focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
                 />
@@ -355,7 +356,7 @@ const BookingForm = () => {
                   value={formData.tindakan}
                   onChange={handleChange}
                   required
-                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
                  focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 >
                   <option value="">-- Pilih Tindakan --</option>
@@ -384,7 +385,7 @@ const BookingForm = () => {
                     value={formData.keterangan}
                     onChange={handleChange}
                     placeholder="Keterangan lainnya"
-                    className="md:col-span-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+                    className="md:col-span-2 border border-gray-300 p-3 rounded-lg shadow-sm
                    focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   />
                 )}
@@ -393,7 +394,7 @@ const BookingForm = () => {
                   value={formData.unit}
                   onChange={handleChange}
                   required
-                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 >
                   <option value="">-- Pilih Unit --</option>
@@ -432,12 +433,15 @@ const BookingForm = () => {
                     value={formData.unitKeterangan || ""}
                     onChange={handleChange}
                     placeholder="Keterangan Unit"
-                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm
                focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   />
                 )}
               </div>
             )}
+            <div>
+              <Link to="/booked">Booking List</Link>
+            </div>
 
             {/* Tanggal & Jam */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -478,7 +482,7 @@ const BookingForm = () => {
                   }
                 }}
                 type="date"
-                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 required
               />
@@ -488,7 +492,7 @@ const BookingForm = () => {
                 value={formData.jam}
                 onChange={handleChange}
                 required
-                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
               >
                 <option value="">Pilih Jam</option>
@@ -519,6 +523,7 @@ const BookingForm = () => {
           </form>
         </div>
       </div>
+
       <Footer />
     </>
   );

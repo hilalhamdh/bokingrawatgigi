@@ -7,6 +7,7 @@ import LoginPage from "./components/LoginPage";
 
 import BookingForm from "./components/BokingForms";
 import PrivateRoute from "./components/PrivatRoute";
+import BookedSlots from "./components/BookedSlots";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />{" "}
         {/* Halaman login admin */}
         <Route path="/admin" element={<AdminDashboard />} />{" "}
+        <Route path="/booked" element={<BookedSlots />} />{" "}
       </Routes>
     </BrowserRouter>
   );
