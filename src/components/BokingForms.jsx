@@ -258,17 +258,6 @@ const BookingForm = () => {
                focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   />
                 )}
-                {formData.unit === "Lainnya" && (
-                  <input
-                    type="text"
-                    name="unitKeterangan"
-                    value={formData.unitKeterangan || ""}
-                    onChange={handleChange}
-                    placeholder="Keterangan Unit"
-                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
-               focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
-                  />
-                )}
 
                 <input
                   name="namaPasien"
