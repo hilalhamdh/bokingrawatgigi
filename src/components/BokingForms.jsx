@@ -269,16 +269,21 @@ const BookingForm = () => {
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
                 />
-                <input
-                  name="usiaPasien"
-                  value={formData.usiaPasien}
-                  onChange={handleChange}
-                  type="number"
-                  placeholder="Usia Pasien"
-                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
-             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
-                  required
-                />
+                <div className="relative w-full">
+                  <input
+                    name="usiaPasien"
+                    value={formData.usiaPasien}
+                    onChange={handleChange}
+                    type="number"
+                    placeholder="Usia Pasien"
+                    className="w-full border border-gray-300 p-3 rounded-lg shadow-sm pr-16
+      focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                    required
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">
+                    tahun
+                  </span>
+                </div>
                 <select
                   name="tindakan"
                   value={formData.tindakan}
@@ -317,18 +322,72 @@ const BookingForm = () => {
               </div>
             )}
 
-            {formData.status === "Personil" && (
+            {formData.status === "Personel" && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <input
                   name="nama"
                   value={formData.nama}
                   onChange={handleChange}
-                  placeholder="Nama"
+                  placeholder="Nama Pasien"
                   className="border border-gray-300 p-3 rounded-lg shadow-sm 
                  focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
                 />
+                <div className="relative w-full">
+                  <input
+                    name="usiaPasien"
+                    value={formData.usiaPasien}
+                    onChange={handleChange}
+                    type="number"
+                    placeholder="Usia Pasien"
+                    className="w-full border border-gray-300 p-3 rounded-lg shadow-sm pr-16
+      focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                    required
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">
+                    tahun
+                  </span>
+                </div>
                 {/* Select untuk Unit */}
+
+                <select
+                  name="tindakan"
+                  value={formData.tindakan}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+                 focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                >
+                  <option value="">-- Pilih Tindakan --</option>
+                  <option value="Pemeriksaan Gigi">Pemeriksaan Gigi</option>
+                  <option value="Pemeriksaan dan Pengobatan">
+                    Pemeriksaan dan Pengobatan
+                  </option>
+                  <option value="Penambalan Gigi">Penambalan Gigi</option>
+                  <option value="Pencabutan Gigi">Pencabutan Gigi</option>
+                  <option
+                    value="Pembersihan Karang Gigi"
+                    disabled={formData.hari === "Kamis"}
+                  >
+                    Pembersihan Karang Gigi{" "}
+                    {formData.hari === "Kamis" ? "(tidak tersedia Kamis)" : ""}
+                  </option>
+                  <option value="Perawatan Saluran Akar">
+                    Perawatan Saluran Akar
+                  </option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+
+                {formData.tindakan === "Lainnya" && (
+                  <textarea
+                    name="keterangan"
+                    value={formData.keterangan}
+                    onChange={handleChange}
+                    placeholder="Keterangan lainnya"
+                    className="md:col-span-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+                   focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                  />
+                )}
                 <select
                   name="unit"
                   value={formData.unit}
@@ -375,56 +434,6 @@ const BookingForm = () => {
                     placeholder="Keterangan Unit"
                     className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
                focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
-                  />
-                )}
-                {formData.unit === "Lainnya" && (
-                  <input
-                    type="text"
-                    name="unitKeterangan"
-                    value={formData.unitKeterangan || ""}
-                    onChange={handleChange}
-                    placeholder="Keterangan Unit"
-                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
-               focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
-                  />
-                )}
-
-                <select
-                  name="tindakan"
-                  value={formData.tindakan}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
-                 focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
-                >
-                  <option value="">-- Pilih Tindakan --</option>
-                  <option value="Pemeriksaan Gigi">Pemeriksaan Gigi</option>
-                  <option value="Pemeriksaan dan Pengobatan">
-                    Pemeriksaan dan Pengobatan
-                  </option>
-                  <option value="Penambalan Gigi">Penambalan Gigi</option>
-                  <option value="Pencabutan Gigi">Pencabutan Gigi</option>
-                  <option
-                    value="Pembersihan Karang Gigi"
-                    disabled={formData.hari === "Kamis"}
-                  >
-                    Pembersihan Karang Gigi{" "}
-                    {formData.hari === "Kamis" ? "(tidak tersedia Kamis)" : ""}
-                  </option>
-                  <option value="Perawatan Saluran Akar">
-                    Perawatan Saluran Akar
-                  </option>
-                  <option value="Lainnya">Lainnya</option>
-                </select>
-
-                {formData.tindakan === "Lainnya" && (
-                  <textarea
-                    name="keterangan"
-                    value={formData.keterangan}
-                    onChange={handleChange}
-                    placeholder="Keterangan lainnya"
-                    className="md:col-span-2 border border-gray-300 p-3 rounded-lg shadow-sm 
-                   focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   />
                 )}
               </div>
