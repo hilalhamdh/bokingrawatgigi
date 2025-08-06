@@ -5,8 +5,8 @@ import QRCode from "qrcode";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import BookedSlots from "./BookedSlots";
 
+import { LuNotebook } from "react-icons/lu";
 const BookingForm = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -439,8 +439,14 @@ const BookingForm = () => {
                 )}
               </div>
             )}
-            <div>
-              <Link to="/booked">Booking List</Link>
+            <div className="p-1 bg-[#87CEEB] w-35 text-center rounded-sm ">
+              <Link
+                to="/booked"
+                className="text-white font-semibold flex items-center gap-1"
+              >
+                Lihat Booking
+                <LuNotebook className="text-white" />
+              </Link>
             </div>
 
             {/* Tanggal & Jam */}
