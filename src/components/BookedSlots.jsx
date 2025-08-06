@@ -76,80 +76,85 @@ const BookedSlots = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-6xl mx-auto px-4 mt-10 py-6">
-        <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
-          <h1 className="text-md md:text-2xl font-bold  flex-1 text-center text-[#76BBDD]">
-            Jadwal Booking - {currentMonth.format("MMMM YYYY")}
-          </h1>
-        </div>
-        <div className="flex items-center justify-between p-2">
-          <button
-            onClick={goToPreviousMonth}
-            className="bg-[#76BBDD] hover:bg-[#5da7ce] px-1 text-xs md:text-sm md:px-3 py-1 rounded text-white"
-          >
-            ← Bulan Sebelumnya
-          </button>
-          <button
-            onClick={goToNextMonth}
-            className="bg-[#76BBDD] hover:bg-[#5da7ce] text-xs md:text-sm px-1 md:px-3 py-1 rounded text-white"
-          >
-            Bulan Berikutnya →
-          </button>
-        </div>
-
-        <div className="overflow-x-auto max-w-full">
-          <div className="min-w-[700px]">
-            <table className="w-full border border-gray-300 text-sm">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="border px-2 py-2 text-center whitespace-nowrap">
-                    Jam / Tanggal
-                  </th>
-                  {workDaysInMonth.map((day, index) => (
-                    <th
-                      key={index}
-                      className="border px-2 py-2 text-center whitespace-nowrap text-xs md:text-sm"
-                    >
-                      {day.format("DD MMM (ddd)")}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {availableTimes.map((time, rowIndex) => (
-                  <tr key={rowIndex}>
-                    <td className="border px-2 py-2 font-medium text-center whitespace-nowrap text-xs md:text-sm">
-                      {time}
-                    </td>
-                    {workDaysInMonth.map((day, colIndex) => {
-                      const tanggal = day.format("YYYY-MM-DD");
-                      const booked = isSlotBooked(tanggal, time);
-                      return (
-                        <td
-                          key={colIndex}
-                          className={`border px-1 py-1 text-center text-xs md:text-sm ${
-                            booked
-                              ? "bg-red-200 text-gray-600"
-                              : "bg-green-100 hover:bg-green-200"
-                          }`}
-                        >
-                          {booked ? "Terisi" : "Tersedia"}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <div
+        className="w-full min-h-screen bg-cover bg-center py-16 px-4"
+        style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
+      >
+        <div className="max-w-6xl mx-auto px-4 mt-5 py-6 text-black ">
+          <div className="flex justify-between items-center mb-4 flex-wrap gap-2 bg-gray-300">
+            <h1 className="text-md md:text-2xl font-bold  flex-1 text-center text-[#76BBDD]">
+              Jadwal Booking - {currentMonth.format("MMMM YYYY")}
+            </h1>
           </div>
-        </div>
-        <div className="mt-5 text-left mb-10">
-          <Link
-            to="/"
-            className="inline-block bg-[#76BBDD] hover:bg-[#5da7ce]  text-white font-medium px-2 md:px-4 py-1 md:py-2 rounded transition duration-200 text-sm md:text-base"
-          >
-            ← Kembali ke Form
-          </Link>
+          <div className="flex items-center justify-between p-2">
+            <button
+              onClick={goToPreviousMonth}
+              className="bg-[#76BBDD] hover:bg-[#5da7ce] px-1 text-xs md:text-sm md:px-3 py-1 rounded text-white"
+            >
+              ← Bulan Sebelumnya
+            </button>
+            <button
+              onClick={goToNextMonth}
+              className="bg-[#76BBDD] hover:bg-[#5da7ce] text-xs md:text-sm px-1 md:px-3 py-1 rounded text-white"
+            >
+              Bulan Berikutnya →
+            </button>
+          </div>
+
+          <div className="overflow-x-auto max-w-full bg-gray-300">
+            <div className="min-w-[700px]">
+              <table className="w-full border border-gray-300 text-sm">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="border px-2 py-2 text-center whitespace-nowrap">
+                      Jam / Tanggal
+                    </th>
+                    {workDaysInMonth.map((day, index) => (
+                      <th
+                        key={index}
+                        className="border px-2 py-2 text-center whitespace-nowrap text-xs md:text-sm"
+                      >
+                        {day.format("DD MMM (ddd)")}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {availableTimes.map((time, rowIndex) => (
+                    <tr key={rowIndex}>
+                      <td className="border px-2 py-2 font-medium text-center whitespace-nowrap text-xs md:text-sm">
+                        {time}
+                      </td>
+                      {workDaysInMonth.map((day, colIndex) => {
+                        const tanggal = day.format("YYYY-MM-DD");
+                        const booked = isSlotBooked(tanggal, time);
+                        return (
+                          <td
+                            key={colIndex}
+                            className={`border px-1 py-1 text-center text-xs md:text-sm ${
+                              booked
+                                ? "bg-red-200 text-gray-600"
+                                : "bg-green-100 hover:bg-green-200"
+                            }`}
+                          >
+                            {booked ? "Terisi" : "Tersedia"}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="mt-5 text-left mb-10">
+            <Link
+              to="/"
+              className="inline-block bg-[#76BBDD] hover:bg-[#5da7ce]  text-white font-medium px-2 md:px-4 py-1 md:py-2 rounded transition duration-200 text-sm md:text-base"
+            >
+              ← Kembali ke Form
+            </Link>
+          </div>
         </div>
       </div>
       <Footer />
