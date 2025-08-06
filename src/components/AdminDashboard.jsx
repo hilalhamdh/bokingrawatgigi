@@ -8,6 +8,7 @@ import {
   deleteDoc,
 } from "../firebase";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [filteredBookings, setFilteredBookings] = useState([]);
@@ -135,9 +136,9 @@ const AdminDashboard = () => {
         <header className="w-full  bg-white shadow-xl border-b-3 border-gray-300">
           <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center ">
             <div className="flex gap-4">
-              <img src="/logo.jpg" className="w-10 h-10 rounded-full" />
-              <Link to="/" className="text-2xl font-bold text-purple-700">
-                RAWAT GITIMU
+              <img src="/bin.jpg" className="w-10 h-10 rounded-full" />
+              <Link to="/" className="text-2xl font-bold text-[#76BBDD]">
+                RAWAT GIGIMU
               </Link>
             </div>
 
@@ -148,7 +149,7 @@ const AdminDashboard = () => {
               {/* Login Admin */}
               <Link
                 to="/"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition"
+                className="bg-[#87CEEB] hover:bg-[#76BBDD] text-white px-4 py-2 rounded-lg text-sm font-semibold transition"
               >
                 Logout
               </Link>
@@ -157,8 +158,8 @@ const AdminDashboard = () => {
         </header>
 
         <div className="max-w-7xl mx-auto  p-4 mt-5 bg-white">
-          <h1 className="text-xl md:text-2xl font-bold mb-4 text-center text-purple-600 pb-4">
-            Daftar Booking <span className="text-red-600">Rawat Gigi</span>
+          <h1 className="text-xl md:text-2xl font-bold mb-4 text-center text-[#76BBDD] pb-4">
+            Daftar Booking Rawat Gigi
           </h1>
 
           {/* Filter */}
@@ -171,7 +172,9 @@ const AdminDashboard = () => {
                 type="date"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}
-                className="input w-full sm:w-auto min-w-[150px] bg-white text-gray-700  border border-gray-700 rounded px-3 py-2"
+                className="w-full sm:w-auto min-w-[150px] border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none 
+             bg-white text-gray-700"
               />
             </div>
 
@@ -183,7 +186,9 @@ const AdminDashboard = () => {
                 type="date"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}
-                className="input w-full sm:w-auto min-w-[150px] bg-white border border-gray-700 rounded px-3 py-2 text-gray-700"
+                className="w-full sm:w-auto min-w-[150px] border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none
+             bg-white text-gray-700"
               />
             </div>
 
@@ -196,7 +201,9 @@ const AdminDashboard = () => {
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
                 placeholder="Cari nama pasien/personil"
-                className="input w-full bg-white border border-gray-700 rounded px-3 py-2 text-gray-700"
+                className="w-full bg-white border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none
+             text-gray-700"
               />
             </div>
             <button
@@ -252,7 +259,7 @@ const AdminDashboard = () => {
                         <label className="inline-flex items-center justify-center">
                           <input
                             type="checkbox"
-                            className="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-400"
+                            className="w-5 h-5 text-[#87CEEB]  rounded focus:ring-2 focus:ring-[#87CEEB] "
                             checked={booking.verified || false}
                             onChange={() =>
                               toggleVerified(
@@ -279,6 +286,7 @@ const AdminDashboard = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

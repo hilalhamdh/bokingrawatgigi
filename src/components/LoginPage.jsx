@@ -27,7 +27,7 @@ const LoginPage = () => {
       style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path background
     >
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md border border-gray-200 animate-fade-in">
-        <h2 className="text-2xl font-semibold text-center text-purple-700 mb-6">
+        <h2 className="text-2xl font-semibold text-center text-[#76BBDD] mb-6">
           Login Admin
         </h2>
         <form onSubmit={handleLogin} className="space-y-5">
@@ -41,7 +41,10 @@ const LoginPage = () => {
             <input
               id="email"
               type="email"
-              className="input  border-purple-400 text-gray-700 w-full bg-white"
+              placeholder="Email"
+              className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none 
+             text-gray-700 bg-white"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -60,7 +63,9 @@ const LoginPage = () => {
               id="password"
               type="password"
               placeholder="********"
-              className="input border-purple-400 text-gray-700 w-full bg-white"
+              className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none 
+             text-gray-700 bg-white"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -72,7 +77,7 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-md font-semibold transition duration-300"
+            className="w-full bg-[#87CEEB] hover:bg-[#76BBDD] text-white py-2 rounded-md font-semibold transition duration-300"
           >
             Login
           </button>

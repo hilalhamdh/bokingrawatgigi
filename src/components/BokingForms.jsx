@@ -4,6 +4,7 @@ import emailjs from "emailjs-com";
 import QRCode from "qrcode";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -140,8 +141,8 @@ const BookingForm = () => {
         className="w-full min-h-screen bg-cover bg-center py-16 px-4"
         style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
       >
-        <div className="max-w-3xl md:max-w-5xl mx-auto bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-gray-200">
-          <h2 className="text-3xl font-extrabold text-center text-purple-800 mb-8 drop-shadow">
+        <div className="max-w-3xl md:max-w-5xl mx-auto bg-[#F0F4F8] backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-gray-200">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#76BBDD] mb-8  tracking-wide">
             Form Booking Rawat Gigi
           </h2>
 
@@ -154,16 +155,19 @@ const BookingForm = () => {
                 onChange={handleChange}
                 type="email"
                 placeholder="Email Personil"
-                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500"
+                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 required
               />
+
               <input
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 type="tel"
                 placeholder="No. HP Personil"
-                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500"
+                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 required
               />
             </div>
@@ -185,7 +189,7 @@ const BookingForm = () => {
                       value={status}
                       checked={formData.status === status}
                       onChange={handleChange}
-                      className="appearance-none w-4 h-4 rounded-full border-2 border-purple-600 checked:bg-purple-600 checked:border-purple-600 focus:outline-none"
+                      className="appearance-none w-4 h-4 rounded-full border-2 border-[#87CEEB] checked:bg-[#87CEEB] checked:border-[#87CEEB] focus:outline-none"
                       required
                     />
                     <span>{status}</span>
@@ -202,22 +206,77 @@ const BookingForm = () => {
                   value={formData.namaPersonil}
                   onChange={handleChange}
                   placeholder="Nama Personil"
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500"
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
                 />
-                <input
-                  name="unitKeluarga"
-                  value={formData.unitKeluarga}
+                <select
+                  name="unit"
+                  value={formData.unit}
                   onChange={handleChange}
-                  placeholder="Unit"
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm"
-                />
+                  required
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                >
+                  <option value="">-- Pilih Unit --</option>
+
+                  {/* D1 - D9 */}
+                  {Array.from({ length: 9 }, (_, i) => (
+                    <option key={`D${i + 1}`} value={`D${i + 1}`}>{`D${
+                      i + 1
+                    }`}</option>
+                  ))}
+
+                  {/* BIRO 1 - BIRO 5 */}
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <option
+                      key={`BIRO ${i + 1}`}
+                      value={`BIRO ${i + 1}`}
+                    >{`BIRO ${i + 1}`}</option>
+                  ))}
+
+                  {/* PUS 1 - PUS 5 */}
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <option key={`PUS ${i + 1}`} value={`PUS ${i + 1}`}>{`PUS ${
+                      i + 1
+                    }`}</option>
+                  ))}
+
+                  {/* Lainnya */}
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+
+                {/* Input untuk keterangan unit jika "Lainnya" */}
+                {formData.unit === "Lainnya" && (
+                  <input
+                    type="text"
+                    name="unitKeterangan"
+                    value={formData.unitKeterangan || ""}
+                    onChange={handleChange}
+                    placeholder="Keterangan Unit"
+                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+               focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                  />
+                )}
+                {formData.unit === "Lainnya" && (
+                  <input
+                    type="text"
+                    name="unitKeterangan"
+                    value={formData.unitKeterangan || ""}
+                    onChange={handleChange}
+                    placeholder="Keterangan Unit"
+                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+               focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                  />
+                )}
+
                 <input
                   name="namaPasien"
                   value={formData.namaPasien}
                   onChange={handleChange}
                   placeholder="Nama Pasien"
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500"
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
                 />
                 <input
@@ -226,7 +285,8 @@ const BookingForm = () => {
                   onChange={handleChange}
                   type="number"
                   placeholder="Usia Pasien"
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm"
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
                 />
                 <select
@@ -234,7 +294,8 @@ const BookingForm = () => {
                   value={formData.tindakan}
                   onChange={handleChange}
                   required
-                  className="border rounded-md p-2 w-full"
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 >
                   <option value="">-- Pilih Tindakan --</option>
                   <option value="Pemeriksaan Gigi">Pemeriksaan Gigi</option>
@@ -273,30 +334,86 @@ const BookingForm = () => {
                   value={formData.nama}
                   onChange={handleChange}
                   placeholder="Nama"
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500"
+                  className="border border-gray-300 p-3 rounded-lg shadow-sm 
+                 focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
                 />
-                <input
+                {/* Select untuk Unit */}
+                <select
                   name="unit"
                   value={formData.unit}
                   onChange={handleChange}
-                  placeholder="Unit"
-                  className="border border-gray-300 p-3 rounded-lg shadow-sm"
-                />
+                  required
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                >
+                  <option value="">-- Pilih Unit --</option>
+
+                  {/* D1 - D9 */}
+                  {Array.from({ length: 9 }, (_, i) => (
+                    <option key={`D${i + 1}`} value={`D${i + 1}`}>{`D${
+                      i + 1
+                    }`}</option>
+                  ))}
+
+                  {/* BIRO 1 - BIRO 5 */}
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <option
+                      key={`BIRO ${i + 1}`}
+                      value={`BIRO ${i + 1}`}
+                    >{`BIRO ${i + 1}`}</option>
+                  ))}
+
+                  {/* PUS 1 - PUS 5 */}
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <option key={`PUS ${i + 1}`} value={`PUS ${i + 1}`}>{`PUS ${
+                      i + 1
+                    }`}</option>
+                  ))}
+
+                  {/* Lainnya */}
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+
+                {/* Input untuk keterangan unit jika "Lainnya" */}
+                {formData.unit === "Lainnya" && (
+                  <input
+                    type="text"
+                    name="unitKeterangan"
+                    value={formData.unitKeterangan || ""}
+                    onChange={handleChange}
+                    placeholder="Keterangan Unit"
+                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+               focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                  />
+                )}
+                {formData.unit === "Lainnya" && (
+                  <input
+                    type="text"
+                    name="unitKeterangan"
+                    value={formData.unitKeterangan || ""}
+                    onChange={handleChange}
+                    placeholder="Keterangan Unit"
+                    className="w-full mt-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+               focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
+                  />
+                )}
+
                 <select
                   name="tindakan"
                   value={formData.tindakan}
                   onChange={handleChange}
                   required
-                  className="border rounded-md p-2 w-full"
+                  className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+                 focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 >
                   <option value="">-- Pilih Tindakan --</option>
                   <option value="Pemeriksaan Gigi">Pemeriksaan Gigi</option>
-                  <option value="">Pilih Tindakan</option>
-                  <option>Pemeriksaan dan Pengobatan</option>
-                  <option>Penambalan Gigi</option>
-                  <option>Pencabutan Gigi</option>
-
+                  <option value="Pemeriksaan dan Pengobatan">
+                    Pemeriksaan dan Pengobatan
+                  </option>
+                  <option value="Penambalan Gigi">Penambalan Gigi</option>
+                  <option value="Pencabutan Gigi">Pencabutan Gigi</option>
                   <option
                     value="Pembersihan Karang Gigi"
                     disabled={formData.hari === "Kamis"}
@@ -304,17 +421,20 @@ const BookingForm = () => {
                     Pembersihan Karang Gigi{" "}
                     {formData.hari === "Kamis" ? "(tidak tersedia Kamis)" : ""}
                   </option>
-
-                  <option>Perawatan Saluran Akar</option>
-                  <option>Lainnya</option>
+                  <option value="Perawatan Saluran Akar">
+                    Perawatan Saluran Akar
+                  </option>
+                  <option value="Lainnya">Lainnya</option>
                 </select>
+
                 {formData.tindakan === "Lainnya" && (
                   <textarea
                     name="keterangan"
                     value={formData.keterangan}
                     onChange={handleChange}
                     placeholder="Keterangan lainnya"
-                    className="md:col-span-2 border border-gray-300 p-3 rounded-lg shadow-sm"
+                    className="md:col-span-2 border border-gray-300 p-3 rounded-lg shadow-sm 
+                   focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   />
                 )}
               </div>
@@ -324,34 +444,53 @@ const BookingForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <input
                 name="tanggal"
+                placeholder="Pilih Tanggal"
                 value={formData.tanggal}
                 onChange={(e) => {
-                  const selectedDate = new Date(e.target.value);
+                  const value = e.target.value;
+                  const selectedDate = new Date(value);
                   const day = selectedDate.getDay();
-                  if (day >= 1 && day <= 5) {
-                    const hari = selectedDate.toLocaleDateString("id-ID", {
-                      weekday: "long",
-                    });
+
+                  if (!isNaN(day)) {
+                    if (day >= 1 && day <= 5) {
+                      const hari = selectedDate.toLocaleDateString("id-ID", {
+                        weekday: "long",
+                      });
+                      setFormData((prev) => ({
+                        ...prev,
+                        tanggal: value,
+                        hari,
+                      }));
+                    } else {
+                      alert("Silakan pilih hari antara Senin - Jumat.");
+                      setFormData((prev) => ({
+                        ...prev,
+                        tanggal: "",
+                        hari: "",
+                      }));
+                    }
+                  } else {
+                    // Jika tanggal tidak valid
                     setFormData((prev) => ({
                       ...prev,
-                      tanggal: e.target.value,
-                      hari,
+                      tanggal: "",
+                      hari: "",
                     }));
-                  } else {
-                    alert("Silakan pilih hari antara Senin - Jumat.");
-                    setFormData((prev) => ({ ...prev, tanggal: "", hari: "" }));
                   }
                 }}
                 type="date"
-                className="border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500"
+                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 required
               />
+
               <select
                 name="jam"
                 value={formData.jam}
                 onChange={handleChange}
-                className="border border-gray-300 p-3 rounded-lg shadow-sm"
                 required
+                className="w-full border border-gray-300 p-3 rounded-lg shadow-sm 
+             focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
               >
                 <option value="">Pilih Jam</option>
                 {jamOptions.map((j) => (
@@ -373,7 +512,7 @@ const BookingForm = () => {
             <div className="flex justify-center mt-8">
               <button
                 type="submit"
-                className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition duration-200"
+                className="bg-[#87CEEB] hover:bg-[#76BBDD] text-[#ffff] font-bold px-6 py-3 rounded-xl shadow-lg transition duration-200"
               >
                 Kirim Booking
               </button>
@@ -381,6 +520,7 @@ const BookingForm = () => {
           </form>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
