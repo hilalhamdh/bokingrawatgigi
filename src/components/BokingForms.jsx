@@ -166,7 +166,7 @@ const BookingForm = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 type="tel"
-                placeholder="No. HP Personil"
+                placeholder="No. HP Personel"
                 className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 required
@@ -179,7 +179,7 @@ const BookingForm = () => {
                 Status:
               </label>
               <div className="flex gap-8">
-                {["Keluarga", "Personil"].map((status) => (
+                {["Keluarga", "Personel"].map((status) => (
                   <label
                     key={status}
                     className="flex items-center space-x-2 cursor-pointer"
@@ -206,7 +206,7 @@ const BookingForm = () => {
                   name="namaPersonil"
                   value={formData.namaPersonil}
                   onChange={handleChange}
-                  placeholder="Nama Personil"
+                  placeholder="Nama Personel"
                   className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                   required
