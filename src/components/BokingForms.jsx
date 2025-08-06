@@ -143,7 +143,7 @@ const BookingForm = () => {
       >
         <div className="max-w-3xl md:max-w-5xl mx-auto bg-[#F0F4F8] backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-gray-200">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#76BBDD] mb-8  tracking-wide">
-            Form Booking Rawat Gigi
+            Form Booking Poli Gigi
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-6 text-gray-500">
