@@ -80,7 +80,7 @@ const BookedSlots = () => {
         className="w-full min-h-screen bg-cover bg-center py-16 px-4"
         style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
       >
-        <div className="max-w-6xl mx-auto px-4 mt-5 py-6 text-black ">
+        <div className="md:max-w-8xl w-full mx-auto px-2 md:px-4 mt-5 py-6 text-black ">
           <div className="flex justify-between items-center mb-4 flex-wrap gap-2 bg-gray-300">
             <h1 className="text-md md:text-2xl font-bold  flex-1 text-center text-[#76BBDD]">
               Jadwal Booking - {currentMonth.format("MMMM YYYY")}
@@ -102,7 +102,7 @@ const BookedSlots = () => {
           </div>
 
           <div className="overflow-x-auto max-w-full bg-gray-300">
-            <div className="min-w-[700px]">
+            <div className="min-w-[900px]">
               <table className="w-full border border-gray-300 text-sm">
                 <thead>
                   <tr className="bg-gray-100">
