@@ -78,15 +78,17 @@ const BookedSlots = () => {
       <Navbar />
       <div className="max-w-6xl mx-auto px-4 mt-10 py-6">
         <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
+          <h1 className="text-md md:text-2xl font-bold  flex-1 text-center text-[#76BBDD]">
+            Jadwal Booking - {currentMonth.format("MMMM YYYY")}
+          </h1>
+        </div>
+        <div className="flex items-center justify-between p-2">
           <button
             onClick={goToPreviousMonth}
             className="bg-[#76BBDD] hover:bg-[#5da7ce] px-1 text-xs md:text-sm md:px-3 py-1 rounded text-white"
           >
             ← Bulan Sebelumnya
           </button>
-          <h1 className="text-md md:text-2xl font-bold  flex-1 text-center text-[#76BBDD]">
-            Jadwal Booking - {currentMonth.format("MMMM YYYY")}
-          </h1>
           <button
             onClick={goToNextMonth}
             className="bg-[#76BBDD] hover:bg-[#5da7ce] text-xs md:text-sm px-1 md:px-3 py-1 rounded text-white"
