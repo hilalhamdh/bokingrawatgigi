@@ -95,7 +95,8 @@ const BookingForm = () => {
         tanggal,
         hari,
         jam,
-        tindakan: formData.tindakan, // ✅ benar!
+        unit: formData.unit, // ✅ tambahkan ini
+        tindakan: formData.tindakan, // ✅ sudah benar
       };
 
       await emailjs.send(
@@ -154,7 +155,7 @@ const BookingForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 type="email"
-                placeholder="Email Personil"
+                placeholder="Email Personel"
                 className="w-full border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none"
                 required
