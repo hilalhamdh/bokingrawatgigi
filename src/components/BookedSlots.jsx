@@ -13,7 +13,6 @@ const BookedSlots = () => {
   const [workDaysInMonth, setWorkDaysInMonth] = useState([]);
 
   const availableTimes = [
-    "08:00-08:30",
     "08:30-09:00",
     "09:00-09:30",
     "09:30-10:00",
