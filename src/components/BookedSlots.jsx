@@ -81,9 +81,9 @@ const BookedSlots = () => {
         style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
       >
         <div className="md:max-w-8xl w-full mx-auto px-2 md:px-4 mt-5 py-6 text-black ">
-          <div className="flex justify-between items-center mb-4 flex-wrap gap-2 bg-gray-300">
-            <h1 className="text-md md:text-2xl font-bold  flex-1 text-center text-[#76BBDD]">
-              Jadwal Booking - {currentMonth.format("MMMM YYYY")}
+          <div className="flex justify-between items-center mb-4 flex-wrap gap-2 bg-gray-100 rounded-lg p-4 shadow-md">
+            <h1 className="w-full md:w-auto text-center  text-xl md:text-2xl font-bold text-[#76BBDD] transition duration-300">
+              Jadwal Booking – {currentMonth.format("MMMM YYYY")}
             </h1>
           </div>
           <div className="flex items-center justify-between p-2">
@@ -103,16 +103,16 @@ const BookedSlots = () => {
 
           <div className="overflow-x-auto max-w-full bg-gray-300">
             <div className="min-w-[900px]">
-              <table className="w-full border border-gray-300 text-sm">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border px-2 py-2 text-center whitespace-nowrap">
+              <table className="w-full border  border-[#76BBDD]  text-sm">
+                <thead className="sticky top-0 z-20 bg-gray-100">
+                  <tr>
+                    <th className="border-2 border-[#76BBDD]  px-2 py-2 text-center whitespace-nowrap sticky left-0 z-30 bg-gray-100">
                       Jam / Tanggal
                     </th>
                     {workDaysInMonth.map((day, index) => (
                       <th
                         key={index}
-                        className="border px-2 py-2 text-center whitespace-nowrap text-xs md:text-sm"
+                        className="border border-[#76BBDD] px-2 py-2 text-center whitespace-nowrap text-xs md:text-sm"
                       >
                         {day.format("DD MMM (ddd)")}
                       </th>
@@ -122,7 +122,7 @@ const BookedSlots = () => {
                 <tbody>
                   {availableTimes.map((time, rowIndex) => (
                     <tr key={rowIndex}>
-                      <td className="border px-2 py-2 font-medium text-center whitespace-nowrap text-xs md:text-sm">
+                      <td className="border border-[#76BBDD] px-2 py-2 font-medium text-center whitespace-nowrap text-xs md:text-sm sticky left-0 bg-white z-10">
                         {time}
                       </td>
                       {workDaysInMonth.map((day, colIndex) => {
@@ -131,7 +131,7 @@ const BookedSlots = () => {
                         return (
                           <td
                             key={colIndex}
-                            className={`border px-1 py-1 text-center text-xs md:text-sm ${
+                            className={`border border-[#76BBDD] px-1 py-1 text-center text-xs md:text-sm ${
                               booked
                                 ? "bg-red-200 text-gray-600"
                                 : "bg-green-100 hover:bg-green-200"
@@ -147,6 +147,7 @@ const BookedSlots = () => {
               </table>
             </div>
           </div>
+
           <div className="mt-5 text-left mb-10">
             <Link
               to="/"
