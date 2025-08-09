@@ -200,7 +200,7 @@ const AdminDashboard = () => {
                 type="text"
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
-                placeholder="Cari nama pasien/personil"
+                placeholder="Cari nama pasien/personel"
                 className="w-full bg-white border border-gray-300 p-3 rounded-lg shadow-sm
              focus:ring-2 focus:ring-[#87CEEB] focus:border-[#87CEEB] outline-none
              text-gray-700"

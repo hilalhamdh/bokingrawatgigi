@@ -6,12 +6,14 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#87CEEB] text-white py-6 ">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center justify-between gap-4">
         {/* Logo */}
+
         <p className="text-sm text-center md:text-right">
           © {year} Badan Intelijen Negara. All rights reserved.
         </p>
-        <div className="flex gap-4 justify-center">
+
+        <div className="flex gap-4 justify-center md:justify-end">
           <img
             src="/bin.jpg"
             alt="Logo 1"
@@ -23,9 +25,9 @@ const Footer = () => {
             className="h-10 w-10 rounded-full object-cover"
           />
         </div>
-
-        {/* Copyright */}
       </div>
+
+      {/* Copyright */}
     </footer>
   );
 };
