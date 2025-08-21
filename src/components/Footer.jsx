@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#87CEEB] text-white py-6 ">
-      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center justify-between gap-4">
+      <div className="container mx-auto px-4 flex  items-center justify-center gap-4">
         {/* Logo */}
 
         <p className="text-sm text-center ">
