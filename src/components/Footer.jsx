@@ -12,19 +12,6 @@ const Footer = () => {
         <p className="text-sm text-center ">
           © {year} Poling Gigiku. All rights reserved.
         </p>
-
-        {/* <div className="flex gap-4 justify-center md:justify-end">
-          <img
-            src="/bg.jpg"
-            alt="Logo 1"
-            className="h-10 w-10 rounded-full object-cover"
-          />
-          <img
-            src="/logo.jpg"
-            alt="Logo 2"
-            className="h-10 w-10 rounded-full object-cover"
-          />
-        </div> */}
       </div>
 
       {/* Copyright */}
