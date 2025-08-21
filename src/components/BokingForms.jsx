@@ -719,7 +719,7 @@ const BookingForm = () => {
       <Navbar />
       <div
         className="w-full min-h-screen bg-cover bg-center py-16 px-4"
-        style={{ backgroundImage: 'url("/bg.jpg")' }}
+        style={{ backgroundImage: 'url("/bgg.jpg")' }}
       >
         <div className="max-w-3xl md:max-w-5xl mx-auto bg-[#F0F4F8] backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-gray-200">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#76BBDD] mb-8 tracking-wide">

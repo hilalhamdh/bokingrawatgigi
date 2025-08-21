@@ -24,7 +24,7 @@ const LoginPage = () => {
   return (
     <div
       className="w-full min-h-screen bg-cover bg-center py-16 px-4 flex items-center justify-center"
-      style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path background
+      style={{ backgroundImage: 'url("/bgg.jpg")' }} // Ganti sesuai path background
     >
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md border border-gray-200 animate-fade-in">
         <h2 className="text-2xl font-semibold text-center text-[#76BBDD] mb-6">

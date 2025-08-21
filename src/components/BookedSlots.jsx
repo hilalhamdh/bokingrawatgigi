@@ -77,7 +77,7 @@ const BookedSlots = () => {
       <Navbar />
       <div
         className="w-full min-h-screen bg-cover bg-center py-16 px-4"
-        style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
+        style={{ backgroundImage: 'url("/bgg.jpg")' }} // Ganti sesuai path
       >
         <div className="md:max-w-8xl w-full mx-auto px-2 md:px-4 mt-5 py-6 text-black ">
           <div className="flex justify-between items-center mb-4 flex-wrap gap-2 bg-gray-100 rounded-lg p-4 shadow-md">

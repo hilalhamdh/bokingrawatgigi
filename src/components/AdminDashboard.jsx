@@ -131,12 +131,12 @@ const AdminDashboard = () => {
     <div>
       <div
         className="w-full min-h-screen bg-cover bg-center  "
-        style={{ backgroundImage: 'url("/bg.jpg")' }} // Ganti sesuai path
+        style={{ backgroundImage: 'url("/bgg.jpg")' }} // Ganti sesuai path
       >
         <header className="w-full  bg-white shadow-xl border-b-3 border-gray-300">
           <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center ">
             <div className="flex gap-4">
-              <img src="/bin.jpg" className="w-10 h-10 rounded-full" />
+              <img src="/logo.jpg" className="w-10 h-10 rounded-full" />
               <Link to="/" className="text-2xl font-bold text-[#76BBDD]">
                 RAWAT GIGIMU
               </Link>

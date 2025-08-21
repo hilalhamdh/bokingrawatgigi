@@ -6,7 +6,7 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         <div className="flex items-center justify-center  gap-4">
           <img
-            src="/bin.jpg"
+            src="/logo.jpg"
             className="w-7 h-7 md:w-10 md:h-10 rounded-full"
           />
 
