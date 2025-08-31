@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 import {
   db,
   collection,
@@ -89,6 +90,7 @@ const AdminDashboard = () => {
     const headers = [
       "Nama",
       "Email",
+      "Nomor WA",
       "Status",
       "Tanggal",
       "Jam",
@@ -99,6 +101,7 @@ const AdminDashboard = () => {
     const rows = filteredBookings.map((b) => [
       b.nama || b.namaPasien || "",
       b.email,
+      b.nomorWa || b.wa || "", // ambil nomor WA
       b.status,
       b.tanggal,
       b.jam,
@@ -124,7 +127,57 @@ const AdminDashboard = () => {
     link.click();
     document.body.removeChild(link);
   };
+  // Normalisasi nomor WA
+  const formatWA = (number) => {
+    if (!number) return null;
+    let num = number.toString().replace(/\D/g, ""); // hapus semua non-digit
+    if (num.startsWith("0")) num = "62" + num.slice(1); // ubah 0 di depan jadi 62
+    if (!num.startsWith("62")) num = "62" + num; // pastikan kode negara
+    return num;
+  };
 
+  // Generate link WA dari template
+  const getWaLink = (number, booking) => {
+    const formattedNumber = formatWA(number);
+    if (!formattedNumber) return "#";
+
+    // Gunakan \n untuk line break
+    const text =
+      `Halo ${booking.nama || "Pasien"}\n` +
+      `Booking Anda di Poli Gigi sudah dikonfirmasi\n\n` +
+      `Tanggal: ${booking.tanggal}\n` +
+      `Jam: ${booking.jam}\n` +
+      `Unit: ${booking.unit || booking.unitKeluarga || ""}\n\n` +
+      `Mohon konfirmasi kehadiran Anda dengan membalas HADIR atau TIDAK HADIR.` +
+      `Terima Kasih`;
+
+    return `https://wa.me/${formattedNumber}?text=${encodeURIComponent(text)}`;
+  };
+  useEffect(() => {
+    let filtered = [...bookings];
+
+    if (dateFrom) filtered = filtered.filter((b) => b.tanggal >= dateFrom);
+    if (dateTo) filtered = filtered.filter((b) => b.tanggal <= dateTo);
+    if (searchName.trim() !== "") {
+      filtered = filtered.filter((b) =>
+        (b.nama || b.namaPasien || "")
+          .toLowerCase()
+          .includes(searchName.toLowerCase())
+      );
+    }
+
+    // Parse tanggal dan sort ascending
+    const parseDate = (str) => {
+      const [y, m, d] = str.split("-"); // sesuaikan format tanggal di Firestore
+      return new Date(`${y}-${m}-${d}`);
+    };
+
+    filtered.sort((a, b) => parseDate(a.tanggal) - parseDate(b.tanggal));
+
+    setFilteredBookings(filtered);
+  }, [dateFrom, dateTo, searchName, bookings]);
+
+  const [selectedTemplate, setSelectedTemplate] = useState({});
   if (loading) return <p>Loading data booking...</p>;
 
   return (
@@ -221,6 +274,8 @@ const AdminDashboard = () => {
                 <tr>
                   <th className="border px-4 py-2">Nama</th>
                   <th className="border px-4 py-2">Email</th>
+                  <th className="border px-4 py-2">Konfirmasi</th>{" "}
+                  {/* Kolom baru */}
                   <th className="border px-4 py-2">Status</th>
                   <th className="border px-4 py-2">Hari</th>
                   <th className="border px-4 py-2">Tanggal</th>
@@ -245,6 +300,27 @@ const AdminDashboard = () => {
                         {booking.nama || booking.namaPasien || "Tamu"}
                       </td>
                       <td className="border px-4 py-2">{booking.email}</td>
+                      <td className="border py-2 text-center gap-2">
+                        {/* Dropdown pilih template */}
+
+                        {/* Tombol WA */}
+                        {booking.phone || booking.wa ? (
+                          <a
+                            href={getWaLink(
+                              booking.phone,
+                              booking,
+                              selectedTemplate[booking.id] || "confirm"
+                            )}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 text-green-600 hover:underline mt-1"
+                          >
+                            <FaWhatsapp className="text-green-500 text-sm" />
+                            <p>WhatsApp</p>
+                          </a>
+                        ) : null}
+                      </td>
+
                       <td className="border px-4 py-2">{booking.status}</td>
                       <td className="border px-4 py-2">{booking.hari}</td>
                       <td className="border px-4 py-2">{booking.tanggal}</td>

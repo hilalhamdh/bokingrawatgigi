@@ -27,3 +27,5 @@ const analytics = getAnalytics(app);
 export { db, collection, query, where, getDocs, addDoc,  doc, deleteDoc,
   updateDoc };
 export { app, auth, signInWithEmailAndPassword, signOut };
+
+
