@@ -128,6 +128,13 @@ const AdminDashboard = () => {
     document.body.removeChild(link);
   };
   // Normalisasi nomor WA
+  // Cek apakah nomor WA valid (Indonesia)
+  const isValidWA = (number) => {
+    if (!number) return false;
+    const num = number.toString().replace(/\D/g, ""); // hapus non-digit
+    return /^(0|62)[0-9]{8,}$/g.test(num); // mulai 0 atau 62, minimal 9 digit
+  };
+
   const formatWA = (number) => {
     if (!number) return null;
     let num = number.toString().replace(/\D/g, ""); // hapus semua non-digit
@@ -301,24 +308,27 @@ const AdminDashboard = () => {
                       </td>
                       <td className="border px-4 py-2">{booking.email}</td>
                       <td className="border py-2 text-center gap-2">
-                        {/* Dropdown pilih template */}
-
-                        {/* Tombol WA */}
                         {booking.phone || booking.wa ? (
-                          <a
-                            href={getWaLink(
-                              booking.phone,
-                              booking,
-                              selectedTemplate[booking.id] || "confirm"
-                            )}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2 text-green-600 hover:underline mt-1"
-                          >
-                            <FaWhatsapp className="text-green-500 text-sm" />
-                            <p>WhatsApp</p>
-                          </a>
-                        ) : null}
+                          isValidWA(booking.phone || booking.wa) ? (
+                            <a
+                              href={getWaLink(
+                                booking.phone || booking.wa,
+                                booking,
+                                selectedTemplate[booking.id] || "confirm"
+                              )}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center gap-2 text-green-600 hover:underline mt-1"
+                            >
+                              <FaWhatsapp className="text-green-500 text-sm" />
+                              <p>WhatsApp</p>
+                            </a>
+                          ) : (
+                            <span>{booking.phone || booking.wa}</span>
+                          )
+                        ) : (
+                          <span>-</span>
+                        )}
                       </td>
 
                       <td className="border px-4 py-2">{booking.status}</td>
