@@ -159,7 +159,13 @@ const AdminDashboard = () => {
   };
 
   const getSmsLink = (number, booking) => {
-    const num = number.toString().replace(/\D/g, "");
+    if (!number) return "#";
+
+    // Normalisasi nomor
+    let num = number.toString().replace(/\D/g, ""); // hapus non-digit
+    if (num.startsWith("0")) num = "62" + num.slice(1); // ubah 0 jadi kode negara
+
+    // Pesan
     const text =
       `Halo ${
         booking.nama || "Pasien"
@@ -167,9 +173,11 @@ const AdminDashboard = () => {
       `Tanggal: ${booking.tanggal}\n` +
       `Jam: ${booking.jam}\n` +
       `Unit: ${booking.unit || booking.unitKeluarga || ""}\n` +
-      `Mohon konfirmasi kehadiran Anda dengan membalas HADIR atau TIDAK HADIR. Terima Kasih`;
+      `Mohon balas HADIR atau TIDAK HADIR. Terima kasih.`;
+
     return `sms:${num}?body=${encodeURIComponent(text)}`;
   };
+
   useEffect(() => {
     let filtered = [...bookings];
 
