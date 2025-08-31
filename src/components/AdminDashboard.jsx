@@ -131,34 +131,44 @@ const AdminDashboard = () => {
   // Cek apakah nomor WA valid (Indonesia)
   const isValidWA = (number) => {
     if (!number) return false;
-    const num = number.toString().replace(/\D/g, ""); // hapus non-digit
-    return /^(0|62)[0-9]{8,}$/g.test(num); // mulai 0 atau 62, minimal 9 digit
+    const num = number.toString().replace(/\D/g, "");
+    return /^(0|62)[0-9]{8,}$/g.test(num);
   };
 
   const formatWA = (number) => {
     if (!number) return null;
-    let num = number.toString().replace(/\D/g, ""); // hapus semua non-digit
-    if (num.startsWith("0")) num = "62" + num.slice(1); // ubah 0 di depan jadi 62
-    if (!num.startsWith("62")) num = "62" + num; // pastikan kode negara
+    let num = number.toString().replace(/\D/g, "");
+    if (num.startsWith("0")) num = "62" + num.slice(1);
+    if (!num.startsWith("62")) num = "62" + num;
     return num;
   };
 
-  // Generate link WA dari template
   const getWaLink = (number, booking) => {
     const formattedNumber = formatWA(number);
     if (!formattedNumber) return "#";
 
-    // Gunakan \n untuk line break
     const text =
       `Halo ${booking.nama || "Pasien"}\n` +
       `Booking Anda di Poli Gigi sudah dikonfirmasi\n\n` +
       `Tanggal: ${booking.tanggal}\n` +
       `Jam: ${booking.jam}\n` +
       `Unit: ${booking.unit || booking.unitKeluarga || ""}\n\n` +
-      `Mohon konfirmasi kehadiran Anda dengan membalas HADIR atau TIDAK HADIR.` +
-      `Terima Kasih`;
+      `Mohon konfirmasi kehadiran Anda dengan membalas HADIR atau TIDAK HADIR. Terima Kasih`;
 
     return `https://wa.me/${formattedNumber}?text=${encodeURIComponent(text)}`;
+  };
+
+  const getSmsLink = (number, booking) => {
+    const num = number.toString().replace(/\D/g, "");
+    const text =
+      `Halo ${
+        booking.nama || "Pasien"
+      }, booking Anda di Poli Gigi sudah dikonfirmasi.\n` +
+      `Tanggal: ${booking.tanggal}\n` +
+      `Jam: ${booking.jam}\n` +
+      `Unit: ${booking.unit || booking.unitKeluarga || ""}\n` +
+      `Mohon konfirmasi kehadiran Anda dengan membalas HADIR atau TIDAK HADIR. Terima Kasih`;
+    return `sms:${num}?body=${encodeURIComponent(text)}`;
   };
   useEffect(() => {
     let filtered = [...bookings];
@@ -313,8 +323,7 @@ const AdminDashboard = () => {
                             <a
                               href={getWaLink(
                                 booking.phone || booking.wa,
-                                booking,
-                                selectedTemplate[booking.id] || "confirm"
+                                booking
                               )}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -324,7 +333,15 @@ const AdminDashboard = () => {
                               <p>WhatsApp</p>
                             </a>
                           ) : (
-                            <span>{booking.phone || booking.wa}</span>
+                            <a
+                              href={getSmsLink(
+                                booking.phone || booking.wa,
+                                booking
+                              )}
+                              className="flex items-center justify-center gap-2 text-blue-600 hover:underline mt-1"
+                            >
+                              <p>SMS</p>
+                            </a>
                           )
                         ) : (
                           <span>-</span>
