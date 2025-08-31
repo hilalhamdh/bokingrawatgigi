@@ -202,7 +202,6 @@ const AdminDashboard = () => {
     setFilteredBookings(filtered);
   }, [dateFrom, dateTo, searchName, bookings]);
 
-  const [selectedTemplate, setSelectedTemplate] = useState({});
   if (loading) return <p>Loading data booking...</p>;
 
   return (
@@ -297,7 +296,9 @@ const AdminDashboard = () => {
             <table className="min-w-full border border-gray-300 text-sm md:text-base">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="border px-4 py-2">Nama</th>
+                  <th className="border px-4 py-2 sticky left-0 bg-white z-10">
+                    Nama
+                  </th>
                   <th className="border px-4 py-2">Email</th>
                   <th className="border px-4 py-2">Konfirmasi</th>{" "}
                   {/* Kolom baru */}
@@ -321,7 +322,7 @@ const AdminDashboard = () => {
                 ) : (
                   filteredBookings.map((booking) => (
                     <tr key={booking.id}>
-                      <td className="border px-4 py-2">
+                      <td className="border px-4 py-2 sticky left-0 bg-white z-10">
                         {booking.nama || booking.namaPasien || "Tamu"}
                       </td>
                       <td className="border px-4 py-2">{booking.email}</td>
@@ -348,7 +349,7 @@ const AdminDashboard = () => {
                               )}
                               className="flex items-center justify-center gap-2 text-blue-600 hover:underline mt-1"
                             >
-                              <p>SMS</p>
+                              <p>{booking.phone}</p>
                             </a>
                           )
                         ) : (
